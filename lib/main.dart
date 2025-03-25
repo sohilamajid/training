@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
             ),
             locale: Locale("en"),
             debugShowCheckedModeBanner: false,
-            home: PageViewScreen(),
+            home: SplashScreen(),
           );
         }
     );
