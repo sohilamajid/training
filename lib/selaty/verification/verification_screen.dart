@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:training/selaty/verification/otp_screen.dart';
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({super.key});
@@ -25,7 +27,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
               SizedBox(
                 height: 20.h,
               ),
-              Text(
+              const Text(
                 "لقد أرسلنا لك رسالة نصية قصيرة تحتوي على رمز الى \n رقم 96656123548",
                 style: TextStyle(
                   fontSize: 17,
@@ -38,16 +40,17 @@ class _VerifyScreenState extends State<VerifyScreen> {
               ),
               InkWell(
                 onTap: () {
+                  Get.to(const OTPCodeScreen());
                   print("Confirmed: ${phoneController.text}");
                 },
                 child: Container(
                   height: 55.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Color(0xFF2ac17e),
+                    color: const Color(0xFF2ac17e),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "تأكيد",
                       textAlign: TextAlign.center,
@@ -83,22 +86,22 @@ class _VerifyScreenState extends State<VerifyScreen> {
                     controller: phoneController,
                     decoration: InputDecoration(
                       contentPadding:
-                          EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+                          const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
                       border: OutlineInputBorder(
-                        borderSide: BorderSide(),
+                        borderSide: const BorderSide(),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Colors.grey),
+                        borderSide: const BorderSide(color: Colors.grey),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Colors.blue),
+                        borderSide: const BorderSide(color: Colors.blue),
                       ),
                       suffixIcon: phoneController.text.isNotEmpty
                           ? IconButton(
-                              icon: Icon(Icons.cancel, color: Colors.red),
+                              icon: const Icon(Icons.cancel, color: Colors.red),
                               onPressed: () {
                                 phoneController.clear();
                                 setState(() {}); // Refresh UI
@@ -108,7 +111,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                     ),
                     initialCountryCode: 'SA',
                     languageCode: 'en',
-                    dropdownIcon: Icon(Icons.arrow_drop_down, color: Colors.black),
+                    dropdownIcon: const Icon(Icons.arrow_drop_down, color: Colors.black),
                     onChanged: (phone) {
                       print(phone
                           .completeNumber); // Full number with country code
@@ -121,7 +124,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       elevation: 0,
-      title: Text(
+      title: const Text(
         "تحقق من رقم الهاتف",
         style: TextStyle(
           fontSize: 18,

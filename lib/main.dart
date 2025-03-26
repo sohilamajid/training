@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:training/selaty/auth/auth_screen.dart';
+import 'package:training/selaty/login/login_screen.dart';
 import 'package:training/selaty/onboarding/page_view_screen.dart';
 import 'package:training/selaty/verification/change_password_screen.dart';
 import 'package:training/selaty/verification/key_screen.dart';
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
                 fontFamily: 'Cairo',
             ),
-            locale: Locale("en"),
+            locale: Locale("ar"),
             debugShowCheckedModeBanner: false,
             home: SplashScreen(),
           );
