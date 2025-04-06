@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'widgets/dotted_circle.dart';
 
-
 class KeyScreen extends StatelessWidget {
   const KeyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     String keyImage = "assets/images/key.png";
-
     return Scaffold(
-      backgroundColor: Color(0xFF2ac17e),
+      backgroundColor: const Color(0xFF2ac17e),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -21,7 +19,7 @@ class KeyScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   CustomPaint(
-                    size: Size(260, 260), // Increased circle size
+                    size: const Size(260, 260), // Increased circle size
                     painter: DottedCirclePainter(),
                   ),
                   Image.asset(
@@ -32,7 +30,7 @@ class KeyScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 60.h,),
-              Text("كلمة المرور الخاصة بك لها",style: TextStyle(
+              const Text("كلمة المرور الخاصة بك لها",style: TextStyle(
                 fontSize: 23,
                 color: Colors.white,
               ),
@@ -49,7 +47,7 @@ class KeyScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "تم",
                       textAlign: TextAlign.center,

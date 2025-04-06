@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:training/const.dart';
 import 'package:training/selaty/login/login_screen.dart';
+import 'package:training/selaty/shared_widgets/custom_row_bottom.dart';
+import 'package:training/selaty/shared_widgets/custom_app_bar.dart';
+import 'package:training/selaty/shared_widgets/custom_button/custom_button.dart';
+import 'package:training/selaty/sign_up/widgets/social-button.dart';
 import '../login/widgets/custom_text_field.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -23,7 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     var height = MediaQuery.sizeOf(context).height;
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      appBar: _buildAppBar(),
+      appBar: const CustomAppBar(),
       body: LayoutBuilder(builder: (context, constraints) {
         return OrientationBuilder(builder: (context, orientation) {
           return SizedBox(
@@ -48,7 +53,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const TextWidget(),
+                          Text(
+                            textAlign: TextAlign.start,
+                            "أدخل بياناتك لإنشاء حساب",
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              color: Colors.grey,
+                            ),
+                          ),
                           SizedBox(
                             height: 20.h,
                           ),
@@ -95,30 +107,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           SizedBox(
                             height: 35.h,
                           ),
-                          InkWell(
+                          CustomButton(
+                            text: "اشتراك",
+                            color: greenButtonColor,
+                            width: double.infinity,
                             onTap: () {
                               _formKey.currentState!.validate();
                             },
-                            child: Container(
-                              height: 55.h,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF2ac17e),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  "اشتراك",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 23,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
                           ),
-                          SizedBox(height: 20.h,),
+                          SizedBox(
+                            height: 20.h,
+                          ),
                           const Center(
                             child: Text(
                               "أو اشترك مع",
@@ -133,49 +132,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  _buildSocialButton(
-                                    text: "Facebook",
-                                    icon: FontAwesomeIcons.facebook,
-                                    color: const Color(0xFF23468a),
-                                  ),
+                                  const SocialButton(
+                                      text: "Facebook",
+                                      icon: FontAwesomeIcons.facebook,
+                                      color: Color(0xFF23468a)),
                                   SizedBox(width: 20.w),
-                                  _buildSocialButton(
-                                    text: "Google",
-                                    icon: FontAwesomeIcons.google,
-                                    color: const Color(0xFFe05a59),
-                                  ),
+                                  const SocialButton(
+                                      text: "Google",
+                                      icon: FontAwesomeIcons.google,
+                                      color: Color(0xFFe05a59)),
                                 ],
                               ),
                             ],
                           ),
                           SizedBox(height: 40.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "لديك حساب بالفعل؟",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              const Spacer(),
-                              const Icon(Icons.arrow_left_outlined,
-                                  size: 40, color: Colors.black),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(const LoginScreen());
-                                },
-                                child: const Text(
-                                  "تسجيل الدخول",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          CustomBottomRow(onTap: () {
+                            Get.to(const LoginScreen());
+                          },),
                         ],
                       ),
                     ],
@@ -186,103 +159,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           );
         });
       }),
-    );
-  }
-
-
-
-
-  Widget _buildSocialButton({
-    required String text,
-    required IconData icon,
-    required Color color,
-  }) {
-    return OutlinedButton.icon(
-      onPressed: () {
-        // Add social login logic here
-      },
-      icon: FaIcon(icon, color: color, size: 20),
-      label: Text(
-        text,
-        style: TextStyle(
-          fontSize: 16,
-          color: color,
-        ),
-      ),
-      style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        side: BorderSide(color: color, width: 1.5),
-      ),
-    );
-  }
-
-  AppBar _buildAppBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: Colors.grey[100],
-      leading: Padding(
-        padding: const EdgeInsets.only(top: 10, right: 10),
-        child: _buildAppBarIcons(icon: Icons.linked_camera_outlined),
-      ),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(top: 10, left: 15),
-          child: _buildAppBarIcons(icon: Icons.arrow_back_ios_new),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildAppBarIcons({
-    required IconData icon,
-  }) {
-    return Container(
-      height: 50.h,
-      width: 40.w,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border(
-          top: BorderSide(
-              color: Colors.black.withOpacity(.2),
-              width: 2), // Top black border
-          right: BorderSide(
-              color: Colors.black.withOpacity(.2),
-              width: 2), // Right black border
-          bottom: BorderSide(
-              color: Colors.black.withOpacity(.2), width: 2), // Invisible
-          left: BorderSide(
-              color: Colors.black.withOpacity(.2), width: 2), // Invisible
-        ),
-      ),
-      child: Center(
-        child: Icon(
-          icon,
-          color: Colors.black,
-          size: 24,
-        ),
-      ),
-    );
-  }
-
-}
-
-class TextWidget extends StatelessWidget {
-  const TextWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      textAlign: TextAlign.start,
-      "أدخل بياناتك لإنشاء حساب",
-      style: TextStyle(
-        fontSize: 20.sp,
-        color: Colors.grey,
-      ),
     );
   }
 }

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:training/const.dart';
 import 'package:training/selaty/login/widgets/custom_text_field.dart';
+import 'package:training/selaty/shared_widgets/custom_app_bar.dart';
+import 'package:training/selaty/shared_widgets/custom_button/custom_button.dart';
 import 'package:training/selaty/verification/key_screen.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -20,7 +23,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     var height = MediaQuery.sizeOf(context).height;
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      appBar: _buildAppBar(),
+      appBar: CustomAppBar(title: "تغيير كلمة المرور",isCenter: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(
@@ -31,7 +34,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 SizedBox(
                   height: 20.h,
                 ),
-                Text(
+                const Text(
                   "أدخل كلمة المرور الجديدة",
                   style: TextStyle(
                     fontSize: 18,
@@ -53,78 +56,16 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         isPassword: true,
                       ),
                       SizedBox(height: 20.h,),
-                      InkWell(
-                        onTap: () {
-                          Get.to(KeyScreen());
-                        },
-                        child: Container(
-                          height: 55.h,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF2ac17e),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "تغيير",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 23,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      CustomButton(text: "تغيير", color: greenButtonColor, width: double.infinity,
+                      onTap: () {
+                        Get.to(const KeyScreen());
+                      },),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-
-  AppBar _buildAppBar() {
-    return AppBar(
-      elevation: 0,
-      title: Center(
-        child: Text(
-          "تغيير كلمة المرور",
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.black,
-          ),
-        ),
-      ),
-      backgroundColor: Colors.grey[100],
-      leading: Padding(
-        padding: const EdgeInsets.only(top: 10, right: 10),
-        child: _buildAppBarIcons(icon: Icons.linked_camera_outlined),
-      ),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(top: 10, left: 15),
-          child: _buildAppBarIcons(icon: Icons.arrow_back_ios_new),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildAppBarIcons({
-    required IconData icon,
-  }) {
-    return Container(
-      height: 50.h,
-      width: 40.w,
-      child: Center(
-        child: Icon(
-          icon,
-          color: Colors.black,
-          size: 24,
         ),
       ),
     );
