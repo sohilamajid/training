@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:training/selaty/home/presentation/widgets/custom_title.dart';
 import 'package:training/selaty/home/presentation/widgets/fruits_banner.dart';
-import 'package:training/selaty/home/presentation/widgets/fruits_items.dart';
+import 'package:training/selaty/home/presentation/widgets/items/fruits_items.dart';
 import 'package:training/selaty/home/presentation/widgets/home_app_bar.dart';
 import 'package:training/selaty/home/presentation/widgets/home_search_bar.dart';
 import '../widgets/fruits_new/fruits_items_new.dart';
@@ -23,8 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
   String fruitImage = "assets/images/fruits_img.jpg";
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.sizeOf(context).width;
-    var height = MediaQuery.sizeOf(context).height;
     return Scaffold(
       backgroundColor: const Color(0xFFe2e2e2),
       appBar: const HomeAppBar(),
@@ -80,7 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
               arrowIcon: arrow,
             ),
             const GridSquares(),
-            const CustomTitle(mainTitle: "طازج وسريع",fontWeight: FontWeight.bold),
+            const CustomTitle(
+                mainTitle: "طازج وسريع", fontWeight: FontWeight.bold),
             SizedBox(height: 10.h),
             const FruitsItemsNew(),
             SizedBox(height: 10.h),
@@ -95,7 +94,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(height: 10.h),
-            CustomTitle(mainTitle: "انتهز الفرصة",fontWeight: FontWeight.bold,trailingText: "مشاهدة الكل",arrowIcon: arrow,),
+            CustomTitle(
+              mainTitle: "انتهز الفرصة",
+              fontWeight: FontWeight.bold,
+              trailingText: "مشاهدة الكل",
+              arrowIcon: arrow,
+            ),
             SizedBox(height: 5.h),
             const LastFruitItems(),
           ],
