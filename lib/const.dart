@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
 
-const Color redButtonColor = Color(0xFFef3f4c);
-const Color greenButtonColor = Color(0xFF2ac17e);
+abstract class AppColors{
+  static Color redColor = const Color(0xFFef3f4c);
+  static Color greenColor =const Color(0xFF2ac17e);
+  static Color orangeColor = const Color(0xFFfda015);
+  static Color greyColor = const Color(0xFFe1e1e3);
+  static Color blueColor = const Color(0xFF31a2fe);
+  static Color purpleColor = const Color(0xFF716a8c);
+  static Color lightGreenColor = const Color(0xFF26b3ab);
+  static Color oilColor = const Color(0xFF859f3d);
+}

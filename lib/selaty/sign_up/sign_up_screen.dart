@@ -109,7 +109,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           CustomButton(
                             text: "اشتراك",
-                            color: greenButtonColor,
+                            color: AppColors.greenColor,
                             width: double.infinity,
                             onTap: () {
                               _formKey.currentState!.validate();

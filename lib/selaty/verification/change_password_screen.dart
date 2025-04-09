@@ -56,7 +56,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         isPassword: true,
                       ),
                       SizedBox(height: 20.h,),
-                      CustomButton(text: "تغيير", color: greenButtonColor, width: double.infinity,
+                      CustomButton(text: "تغيير", color: AppColors.greenColor, width: double.infinity,
                       onTap: () {
                         Get.to(const KeyScreen());
                       },),

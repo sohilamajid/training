@@ -43,7 +43,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
               ),
               CustomButton(
                 text: "تأكيد",
-                color: greenButtonColor,
+                color: AppColors.greenColor,
                 width: double.infinity,
                 onTap: () {
                   Get.to(const OTPCodeScreen());

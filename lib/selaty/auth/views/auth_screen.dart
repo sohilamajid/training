@@ -39,7 +39,7 @@ class AuthScreen extends StatelessWidget {
                               SizedBox(height: 50.h),
                               CustomButton(
                                 text: "تسجيل الدخول",
-                                color: redButtonColor,
+                                color: AppColors.redColor,
                                 width: constraints.maxWidth,
                                 onTap: () {
                                   Get.to(
@@ -52,7 +52,7 @@ class AuthScreen extends StatelessWidget {
                               SizedBox(height: 20.h),
                               CustomButton(
                                 text: "انشئ حساب",
-                                color: greenButtonColor,
+                                color: AppColors.greenColor,
                                 width: constraints.maxWidth,
                                 onTap: () {
                                   Get.to(const SignUpScreen());

@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         CustomButton(
                           text: "تسحيل الدخول",
-                          color: greenButtonColor,
+                          color: AppColors.greenColor,
                           width: double.infinity,
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
