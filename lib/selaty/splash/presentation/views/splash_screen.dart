@@ -26,3 +26,10 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 
+// if((onBoarding ?? false) == false ){
+//   onBoarding
+// }else{
+//   if(isLogin){
+//     home
+// }else{login}
+// }

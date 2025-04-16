@@ -13,8 +13,9 @@ class BottomRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 0,
+      left: 0,//delete width and adjust left , right positions
+      right: 0,
       child: Container(
-        width: width * .55,
         height: 35.h,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(

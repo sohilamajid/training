@@ -14,6 +14,7 @@ class GridSquares extends StatelessWidget {
       child: SizedBox(
         height: 235.h,
         child: GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(8),
           itemCount: offers.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
