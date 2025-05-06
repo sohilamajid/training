@@ -18,7 +18,7 @@ class FirebaseApi {
     'high_importance_channel',
     'High Importance Notifications',
     description: 'This channel is used for important notifications',
-    importance: Importance.defaultImportance,
+    importance: Importance.max,
   );
   final _localNotifications = FlutterLocalNotificationsPlugin();
 
@@ -78,6 +78,8 @@ class FirebaseApi {
             _androidChannel.id,
             _androidChannel.name,
             channelDescription: _androidChannel.description,
+            importance: Importance.high,
+            priority: Priority.high,
             icon: '@drawable/ic_launcher',
           ),
         ),

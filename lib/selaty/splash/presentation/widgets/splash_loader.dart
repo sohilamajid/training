@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:selaty/const.dart';
 class SplashLoader extends StatelessWidget {
   final String imagePath;
 
@@ -7,12 +7,10 @@ class SplashLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
-    return CircleAvatar(
-      backgroundColor: Colors.white,
-      radius: isPortrait ? 35.r : 30.r,
-      child:
-      Image.asset(imagePath, height: 60.h, width: 60.w),
-    );
+    // final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    return
+      CircularProgressIndicator(
+        color: AppColors.greenColor,
+      );
   }
 }

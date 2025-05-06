@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:selaty/selaty/fire_base/fire_base_class.dart';
-import 'package:selaty/selaty/home/presentation/views/home_screen.dart';
 import 'package:selaty/selaty/shared_widgets/custom_navigation_bar.dart';
-import 'package:selaty/shape_maker/fruits/views/fruits_screen.dart';
-import 'package:selaty/shape_maker/plant/views/product_screen.dart';
 import 'firebase_options.dart';
 import 'selaty/splash/presentation/views/splash_screen.dart';
 
@@ -22,6 +20,12 @@ void main()async {
   );
 
   await FirebaseApi().initNotifications();
+
+  OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  OneSignal.initialize("f4e88561-513d-493e-a50a-c3c923613ad4");
+  OneSignal.Notifications.requestPermission(true);
+  // pop up => Settings , Notification Group , Channel(Urgent).
+// OneSignal.User.pushSubscription.id; //specific user
 
 
   SystemChrome.setPreferredOrientations([
