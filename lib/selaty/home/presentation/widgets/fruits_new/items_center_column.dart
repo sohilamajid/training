@@ -4,8 +4,9 @@ import '../../../../../const.dart';
 
 class CenterColumn extends StatelessWidget {
   const CenterColumn({
-    super.key,
+    super.key, required this.isPortrait,
   });
+  final bool isPortrait ;
 
   @override
   Widget build(BuildContext context) {
@@ -15,26 +16,26 @@ class CenterColumn extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 25.h,
-            width: 80.w,
+            height: isPortrait ? 25.h : 40.h,
+            width: isPortrait ? 80.w : 50.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: AppColors.orangeColor,
             ),
             child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 8.0,top: 2),
               child: Text("فواكه",style: TextStyle(
-                fontSize: 15.sp,
+                fontSize: isPortrait? 15.sp : 10.sp,
                 color: Colors.white,
               ),),
             ),
           ),
           Text("طبق فواكه",style: TextStyle(
-            fontSize: 16.sp,
+            fontSize: isPortrait? 16.sp: 11.sp,
             color: Colors.grey,
           ),),
           Text("kg 1",style: TextStyle(
-            fontSize: 16.sp,
+            fontSize: isPortrait ? 16.sp : 11.sp,
             color: Colors.grey,
           ),),
         ],

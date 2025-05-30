@@ -1,7 +1,8 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'offers_class.dart';
+
 class GridUI extends StatelessWidget {
   const GridUI({
     super.key,
@@ -25,7 +26,7 @@ class GridUI extends StatelessWidget {
             Text(
               offer.title,
               style: TextStyle(
-                fontSize: offer.titleFontSize?.sp ?? 14.sp,
+                fontSize: min(offer.titleFontSize?.sp ?? 14.sp, 25),
                 color: Colors.white,
                 // fontWeight: FontWeight.normal,
               ),
@@ -35,7 +36,7 @@ class GridUI extends StatelessWidget {
               Text(
                 offer.centerTitle!,
                 style: TextStyle(
-                  fontSize: offer.centerFontSize?.sp ?? 18.sp,
+                  fontSize: min(offer.centerFontSize?.sp ?? 18.sp, 30),
                   color: offer.centerColor ?? Colors.black,
                   fontWeight: offer.centerFontWeight ?? FontWeight.bold,
                 ),
@@ -45,7 +46,7 @@ class GridUI extends StatelessWidget {
               Text(
                 offer.subtitle!,
                 style: TextStyle(
-                  fontSize: offer.subtitleFontSize?.sp ?? 14.sp,
+                  fontSize: min(offer.subtitleFontSize?.sp ?? 14.sp,25),
                   color: offer.subtitleColor ?? Colors.white,
                   fontWeight: offer.subFontWeight ?? FontWeight.normal,
                 ),

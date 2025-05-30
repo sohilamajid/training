@@ -25,7 +25,7 @@ void main()async {
   OneSignal.initialize("f4e88561-513d-493e-a50a-c3c923613ad4");
   OneSignal.Notifications.requestPermission(true);
   // pop up => Settings , Notification Group , Channel(Urgent).
-// OneSignal.User.pushSubscription.id; //specific user
+  // OneSignal.User.pushSubscription.id; //specific user
 
 
   SystemChrome.setPreferredOrientations([
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             locale: const Locale("ar"),
             navigatorKey: navigatiorKey,
             debugShowCheckedModeBanner: false,
-            home: CustomNavigationBar(logo: logo),
+            home: const SplashScreen(),
             routes: {
               CustomNavigationBar.route: (context) {
                 final RemoteMessage? message = ModalRoute.of(context)?.settings.arguments as RemoteMessage?;

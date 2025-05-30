@@ -22,25 +22,30 @@ class _CategoryScreenState extends State<CategoryScreen> {
       backgroundColor: const Color(0xFFe2e2e2),
       appBar: const SharedAppBar(isCenter: true, title: "التصنيفات"),
       // bottomNavigationBar: CustomNavigationBar(logo: logo),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20.0,right: 20,left: 20),
-        child: GridView.builder(
-          physics: const BouncingScrollPhysics(),
-          shrinkWrap: true,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 15.0,
-            crossAxisSpacing: 15.0,
-            mainAxisExtent: 150,
-          ),
-          itemCount: 10,
-          itemBuilder: (context, index) => InkWell(
-            child: BuildItems(
-                width: width, fruits: fruitsCategory, category: category),
-            onTap: () => Get.to(const CategoryFruitScreen()),
-          ),
-        ),
-      ),
+      body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints){
+        return OrientationBuilder(builder: (context, orientation){
+          bool isPortrait = orientation == Orientation.portrait;
+          return Padding(
+            padding: const EdgeInsets.only(top: 20.0,right: 20,left: 20),
+            child: GridView.builder(
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: isPortrait ? 2 : 4,
+                mainAxisSpacing: 15.0,
+                crossAxisSpacing: 15.0,
+                mainAxisExtent: 150,
+              ),
+              itemCount: isPortrait ? 10 : 12,
+              itemBuilder: (context, index) => InkWell(
+                child: BuildItems(
+                    width: width, fruits: fruitsCategory, category: category),
+                onTap: () => Get.to(const CategoryFruitScreen()),
+              ),
+            ),
+          );
+        });
+      }),
     );
   }
 }

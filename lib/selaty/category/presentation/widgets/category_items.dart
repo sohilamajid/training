@@ -12,28 +12,30 @@ class CategoryItems extends StatelessWidget {
     required this.height,
     required this.fruits,
     required this.width,
+    required this.isPortrait,
   });
 
   final double height;
   final String fruits;
   final double width;
+  final bool isPortrait;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 20.0,right: 20,left: 20),
       child: SizedBox(
-        height: height * .55,
+        height: isPortrait ? height * .55 : height * 4,
         child: GridView.builder(
-          physics: const BouncingScrollPhysics(),
+          physics: isPortrait ? BouncingScrollPhysics(): NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: isPortrait ? 2 : 3,
             mainAxisSpacing: 12.0,
             crossAxisSpacing: 20.0,
-            childAspectRatio: 1 / 2,
+            childAspectRatio: isPortrait ? (1 / 2) : (1 / 1.4),
           ),
-          itemCount: 10,
+          itemCount: isPortrait ? 10 : 12,
           itemBuilder: (context, index) => InkWell(
             onTap: () => Get.to(const CartScreen()),
             child: Stack(
@@ -49,7 +51,7 @@ class CategoryItems extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const ItemsRow(),
+                        ItemsRow(isPortrait: isPortrait,),
                         Center(
                           child: SizedBox(
                             height: 120.h,
@@ -57,12 +59,12 @@ class CategoryItems extends StatelessWidget {
                             child: Image.asset(fruits),
                           ),
                         ),
-                        const CenterColumn(),
+                        CenterColumn(isPortrait: isPortrait,),
                       ],
                     ),
                   ),
                 ),
-                BottomRow(width: width),
+                BottomRow(width: width,isPortrait: isPortrait,),
               ],
             ),
           ),

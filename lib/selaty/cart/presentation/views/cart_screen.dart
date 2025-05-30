@@ -20,20 +20,30 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: const SharedAppBar(isCenter: true, title: "عربة التسوق"),
-      body: Padding(
-        padding: EdgeInsets.only(top: 15.h),
-        child: Column(
-          children: [
-            const ItemsList(),
-            SizedBox(height: 15.h,),
-            const BottomContainer(),
-            SizedBox(height: 8.h,),
-            InkWell(
-              onTap: () => Get.to(const CartEmpty()),
-                child: CustomButton(text: "الدفع", color: AppColors.greenColor , width: 370.w)),
-          ],
-        ),
-      ),
+      body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints){
+        return OrientationBuilder(builder: (context, orientation){
+          bool isPortrait = orientation == Orientation.portrait;
+          return Padding(
+            padding: EdgeInsets.only(top: 15.h),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  ItemsList(isPortrait: isPortrait,),
+                  SizedBox(height: 15.h,),
+                  BottomContainer(isPortrait: isPortrait,),
+                  SizedBox(height: 8.h,),
+                  InkWell(
+                      onTap: () => Get.to(const CartEmpty()),
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 8.0.h,bottom: 13.h),
+                        child: CustomButton(text: "الدفع", color: AppColors.greenColor , width: 370.w),
+                      )),
+                ],
+              ),
+            ),
+          );
+        });
+      }),
     );
   }
 }

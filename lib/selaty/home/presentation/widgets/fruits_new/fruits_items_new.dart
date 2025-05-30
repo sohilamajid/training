@@ -5,7 +5,9 @@ import 'items_center_column.dart';
 import 'items_row.dart';
 
 class FruitsItemsNew extends StatelessWidget {
-  const FruitsItemsNew({super.key});
+  const FruitsItemsNew({super.key, required this.isPortrait});
+  final bool isPortrait ;
+
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +15,11 @@ class FruitsItemsNew extends StatelessWidget {
     var width = MediaQuery.sizeOf(context).width;
     var height = MediaQuery.sizeOf(context).height;
     return SizedBox(
-      height: height * .85,
+      height: isPortrait? height * .85 : height * 2,
       child: GridView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 12.0,
             crossAxisSpacing: 20.0,
@@ -34,7 +36,7 @@ class FruitsItemsNew extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const ItemsRow(),
+                    ItemsRow(isPortrait: isPortrait,),
                     Center(
                       child: SizedBox(
                         height: 120.h,
@@ -42,12 +44,12 @@ class FruitsItemsNew extends StatelessWidget {
                         child: Image.asset(fruits),
                       ),
                     ),
-                    const CenterColumn(),
+                    CenterColumn(isPortrait: isPortrait,),
                   ],
                 ),
               ),
             ),
-            BottomRow(width: width),
+            BottomRow(width: width,isPortrait: isPortrait,),
           ],
         ),
         itemCount: 10,

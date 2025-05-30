@@ -23,23 +23,29 @@ class _CartEmptyState extends State<CartEmpty> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: const SharedAppBar(isCenter: true, title: "عربة التسوق"),
-      body: Center(
-        child: CartStates(
-          width: width,
-          height: height,
-          imagePath: bagIcon,
-          title: 'عربة التسوق فارغة !',
-          titleColor: Colors.black,
-          imageColor: Colors.red,
-          subtitle: "اجعل سلتك سعيدة وأضف منتجات",
-          subtitleColor: Colors.grey,
-          button: InkWell(
-            onTap: () => Get.to(const AddressCardScreen()),
-            child: CustomButton(
-                text: "ابدأ التسوق", color: AppColors.greenColor, width: 320.w),
-          ),
-        ),
-      ),
+      body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints){
+        return OrientationBuilder(builder: (context, orientation){
+          bool isPortrait = orientation == Orientation.portrait;
+          return Center(
+            child: CartStates(
+              isPortrait: isPortrait,
+              width: width,
+              height: height,
+              imagePath: bagIcon,
+              title: 'عربة التسوق فارغة !',
+              titleColor: Colors.black,
+              imageColor: Colors.red,
+              subtitle: "اجعل سلتك سعيدة وأضف منتجات",
+              subtitleColor: Colors.grey,
+              button: InkWell(
+                onTap: () => Get.to(const AddressCardScreen()),
+                child: CustomButton(
+                    text: "ابدأ التسوق", color: AppColors.greenColor, width: 320.w),
+              ),
+            ),
+          );
+        });
+      }),
     );
   }
 }

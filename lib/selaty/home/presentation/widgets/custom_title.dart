@@ -10,6 +10,7 @@ class CustomTitle extends StatelessWidget {
   final String? trailingText;
   final String? arrowIcon;
   final FontWeight? fontWeight;
+  final bool isPortrait;
 
   const CustomTitle({
     super.key,
@@ -17,7 +18,9 @@ class CustomTitle extends StatelessWidget {
     this.secondaryTitle,
     this.trailingText,
     this.arrowIcon,
-    this.fontWeight});
+    this.fontWeight,
+    required this.isPortrait
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +30,12 @@ class CustomTitle extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(mainTitle,style: TextStyle(
-            fontSize: 17.sp,
+            fontSize: isPortrait? 17.sp : 10.sp,
             fontWeight: fontWeight,
           ),),
           SizedBox(width: 5.w,),
           Text(secondaryTitle?? "",style: TextStyle(
-            fontSize: 13.sp,
+            fontSize: isPortrait? 13.sp : 8.sp,
             color: Colors.grey,
           ),),
           const Spacer(),
@@ -42,7 +45,7 @@ class CustomTitle extends StatelessWidget {
           InkWell(
             onTap: () => Get.to(const CategoryScreen()),
             child: Text(trailingText?? "",style: TextStyle(
-              fontSize: 13.sp,
+              fontSize: isPortrait? 13.sp : 8.sp,
               color: Colors.grey,
             ),),
           ),

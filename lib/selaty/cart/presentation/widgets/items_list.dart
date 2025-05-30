@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'item_container.dart';
 class ItemsList extends StatelessWidget {
   const ItemsList({
-    super.key,
+    super.key, required this.isPortrait,
   });
+  final bool isPortrait ;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class ItemsList extends StatelessWidget {
         width: 330.w,
         child: ListView.separated(
           physics: const BouncingScrollPhysics(),
-            itemBuilder: (context,index) => const ItemContainer(),
+            itemBuilder: (context,index) => ItemContainer(isPortrait: isPortrait,),
             separatorBuilder: (context,index) =>  SizedBox(height: 10.h,),
             itemCount: 10),
       ),

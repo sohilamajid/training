@@ -4,8 +4,9 @@ import 'package:intl/intl.dart';
 import '../../../../const.dart';
 class ItemText extends StatefulWidget {
   final String title ;
+  final bool isPortrait ;
   const ItemText({
-    super.key, required this.title,
+    super.key, required this.title, required this.isPortrait,
   });
 
   @override
@@ -27,12 +28,12 @@ class _ItemTextState extends State<ItemText> {
         children: [
           Text(widget.title,style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 15.sp,
+            fontSize: widget.isPortrait ? 15.sp : 10.sp,
             color: isSelected ? AppColors.greenColor : Colors.black,
           ),),
           Text(isSelected ? "٢٦ مارس ٢٠٢٥" :"قيد الانتظار",
             style: TextStyle(
-            fontSize: 13.sp,
+            fontSize: widget.isPortrait ? 13.sp : 9.sp,
             color: Colors.grey,
           ),),
         ],

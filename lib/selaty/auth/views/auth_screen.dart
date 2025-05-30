@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import '../../../const.dart';
-import '../../login/login_screen.dart';
-import '../../shared_widgets/back_ground/back_ground_image.dart';
-import '../../shared_widgets/custom_button/custom_button.dart';
-import '../../shared_widgets/custom_title_image/title_image.dart';
-import '../../sign_up/sign_up_screen.dart';
+import '../widgets/auth_land_layout.dart';
+import '../widgets/auth_portrait_layout.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -20,53 +14,8 @@ class AuthScreen extends StatelessWidget {
           return OrientationBuilder(
             builder: (context, orientation) {
               bool isPortrait = orientation == Orientation.portrait;
-              return Stack(
-                children: [
-                  BuildBackGround(isPortrait: isPortrait, logo: backImage),
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: isPortrait ? 150.0 : 25),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight:
-                              constraints.maxHeight, // Ensures full height
-                        ),
-                        child: IntrinsicHeight(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const CustomTitleImage(),
-                              SizedBox(height: 50.h),
-                              CustomButton(
-                                text: "تسجيل الدخول",
-                                color: AppColors.redColor,
-                                width: constraints.maxWidth,
-                                onTap: () {
-                                  Get.to(
-                                    const LoginScreen(),
-                                    curve: Curves.bounceInOut,
-                                    duration: const Duration(seconds: 1),
-                                  );
-                                },
-                              ),
-                              SizedBox(height: 20.h),
-                              CustomButton(
-                                text: "انشئ حساب",
-                                color: AppColors.greenColor,
-                                width: constraints.maxWidth,
-                                onTap: () {
-                                  Get.to(const SignUpScreen());
-                                },
-                              ),
-                              const Spacer(), // Push content to fill available space
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              );
+              return isPortrait ? AuthPortraitLayout(isPortrait: isPortrait, backImage: backImage) :
+              AuthLandLayout(isPortrait: isPortrait, backImage: backImage);
             },
           );
         },

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:selaty/selaty/login/login_screen.dart';
 import 'widgets/dotted_circle.dart';
 
 class KeyScreen extends StatelessWidget {
@@ -47,13 +49,16 @@ class KeyScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Center(
-                    child: Text(
-                      "تم",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 23,
-                        color: Colors.red,
+                  child: InkWell(
+                    onTap: () => Get.offAll(LoginScreen()),
+                    child: const Center(
+                      child: Text(
+                        "تم",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 23,
+                          color: Colors.red,
+                        ),
                       ),
                     ),
                   ),

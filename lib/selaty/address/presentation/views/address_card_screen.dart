@@ -22,42 +22,53 @@ class _AddressCardScreenState extends State<AddressCardScreen> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: const SharedAppBar(title: "عنوان التسليم", isCenter: true),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(right: 23.w),
-            child: Text(
-              "يشحن الى",
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 15.sp,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 480.h,
-            child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) => AddressCard(
-                  isSelected: selectedIndex == index,
-                  onSelect: () => selectedAddress(index),
+      body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints){
+        return OrientationBuilder(builder: (context, orientation){
+          bool isPortrait = orientation == Orientation.portrait;
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: 23.w),
+                  child: Text(
+                    "يشحن الى",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 15.sp,
+                    ),
+                  ),
                 ),
-                itemCount: 10),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Center(
-              child: InkWell(
-                onTap: () => Get.to(const CartSuccess()),
-                child: CustomButton(
-                    text: "التسليم لهذا العنوان",
-                    color: AppColors.greenColor,
-                    width: 370.w),
-              ))
-        ],
-      ),
+                SizedBox(
+                  height: isPortrait ? 480.h : 250.h,
+                  child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) => AddressCard(
+                        isPortrait: isPortrait,
+                        isSelected: selectedIndex == index,
+                        onSelect: () => selectedAddress(index),
+                      ),
+                      itemCount: 10),
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Center(
+                    child: InkWell(
+                      onTap: () => Get.to(const CartSuccess()),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: CustomButton(
+                            text: "التسليم لهذا العنوان",
+                            color: AppColors.greenColor,
+                            width: 370.w),
+                      ),
+                    ))
+              ],
+            ),
+          );
+        });
+      }),
     );
   }
   void selectedAddress(int index){

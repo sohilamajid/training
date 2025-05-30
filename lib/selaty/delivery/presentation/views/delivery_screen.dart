@@ -18,49 +18,56 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: const SharedAppBar(isCenter: true,title: "ترتيب المسار"),
-      body: Column(
-        children: [
-          const FirstContainer(),
-          Container(
-            padding: EdgeInsets.only(top: 20.h,right: 25.w,left: 20.h),
-            margin: EdgeInsets.only(top: 15.h,left: 15.w),
-            width: 330.w,
-            height: 390.h,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
+      body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints){
+        return OrientationBuilder(builder: (context, orientation) {
+          bool isPortrait = orientation == Orientation.portrait;
+          return SingleChildScrollView(
+            child: Column(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const ItemText(title: "تم الطلب"),
-                    SizedBox(height: 20.h,),
-                    const ItemText(title: "Order"),
-                    SizedBox(height: 20.h,),
-                    const ItemText(title: "تم شحن الطلب"),
-                    SizedBox(height: 20.h,),
-                    const ItemText(title: "خارج الخدمة"),
-                    SizedBox(height: 20.h,),
-                    const ItemText(title: "الخروج للتوصيل"),
-                  ],
-                ),
-                const Spacer(),
-                const Column(
-                  children: [
-                    IconsLine(icon: Icons.list_alt),
-                    IconsLine(icon: Icons.list),
-                    IconsLine(icon: Icons.list),
-                    IconsLine(icon: Icons.list),
-                    IconsLine(icon: Icons.check_circle),
-                  ],
+                FirstContainer(isPortrait: isPortrait,),
+                Container(
+                  padding: EdgeInsets.only(top: 20.h,right: 25.w,left: 20.h),
+                  margin: EdgeInsets.only(top: 15.h,left: 15.w),
+                  width: 330.w,
+                  height: isPortrait ? 390.h : 420.h,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ItemText(title: "تم الطلب",isPortrait: isPortrait,),
+                          SizedBox(height: isPortrait ? 35.h : 15.h,),
+                          ItemText(title: "Order",isPortrait: isPortrait,),
+                          SizedBox(height: isPortrait ? 35.h : 15.h,),
+                          ItemText(title: "تم شحن الطلب", isPortrait: isPortrait,),
+                          SizedBox(height: isPortrait ? 35.h : 15.h,),
+                          ItemText(title: "خارج الخدمة",isPortrait: isPortrait,),
+                          SizedBox(height: isPortrait ? 35.h : 15.h,),
+                          ItemText(title: "الخروج للتوصيل",isPortrait: isPortrait,),
+                        ],
+                      ),
+                      const Spacer(),
+                      const Column(
+                        children: [
+                          IconsLine(icon: Icons.list_alt),
+                          IconsLine(icon: Icons.list),
+                          IconsLine(icon: Icons.list),
+                          IconsLine(icon: Icons.list),
+                          IconsLine(icon: Icons.check_circle),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
+          );
+        },);
+      }),
     );
   }
 }

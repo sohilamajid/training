@@ -4,19 +4,20 @@ class ProfileButton extends StatelessWidget {
   final Color backgroundColor;
   final IconData icon;
   final String label;
+  final bool isPortrait;
 
   const ProfileButton({
     super.key,
     required this.backgroundColor,
     required this.icon,
-    required this.label,
+    required this.label, required this.isPortrait,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 95.h,
-      width: 100.w,
+      height: isPortrait? 95.h : 140,
+      width: isPortrait? 100.w : 70.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: backgroundColor,
@@ -42,7 +43,7 @@ class ProfileButton extends StatelessWidget {
               label,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 15.sp,
+                fontSize: isPortrait? 15.sp : 10.sp,
               ),
             ),
           ],

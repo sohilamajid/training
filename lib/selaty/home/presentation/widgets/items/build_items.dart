@@ -36,6 +36,7 @@ class BuildItems extends StatelessWidget {
             ),
             const Spacer(),
             Stack(
+              alignment: Alignment.center,
               clipBehavior: Clip.none,
               children: [
                 ClipRRect(
@@ -49,7 +50,7 @@ class BuildItems extends StatelessWidget {
                       fit: BoxFit.fill,
                     )),
                 Positioned(
-                  left: 30,
+                  // left: 30,
                   bottom: 30,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,

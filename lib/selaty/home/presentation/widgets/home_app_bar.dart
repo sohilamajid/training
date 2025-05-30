@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppBar({super.key});
+  const HomeAppBar({super.key, required this.isPortrait});
+  final bool isPortrait;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Text("سهيله ماجد",
             style: TextStyle(
               color: Colors.black,
-              fontSize: 15.sp,
+              fontSize: isPortrait ? 15.sp : 9.sp,
             ),),
         ),
         Row(
@@ -52,7 +53,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Icon(CupertinoIcons.location_solid,color: Colors.red,),
             ),
             Text("المنوفية-شبين الكوم",style: TextStyle(
-              fontSize: 15.sp,
+              fontSize: isPortrait? 15.sp : 8.sp,
               color: Colors.grey,
             ),)
           ],

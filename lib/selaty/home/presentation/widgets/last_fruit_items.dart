@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../const.dart';
 
 class LastFruitItems extends StatelessWidget {
-  const LastFruitItems({super.key});
+  const LastFruitItems({super.key, required this.isPortrait});
+  final bool isPortrait ;
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +12,12 @@ class LastFruitItems extends StatelessWidget {
     var width = MediaQuery.sizeOf(context).width;
     var height = MediaQuery.sizeOf(context).height;
     return SizedBox(
-      height: height * .35,
+      height: isPortrait? height * .35 : height * .75,
       child: ListView.separated(
           itemBuilder: (context , index) => Stack(
             children: [
               Container(
-                width: 160.w,
+                width: isPortrait? 160.w : 100.w,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -27,12 +28,12 @@ class LastFruitItems extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("طبق فواكه",style: TextStyle(
-                        fontSize: 16.sp,
+                        fontSize: isPortrait? 16.sp : 12.sp,
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                       ),),
                       Text("خصم 25% بدون فوائد",style: TextStyle(
-                        fontSize: 13.sp,
+                        fontSize: isPortrait ? 13.sp : 8.sp,
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),),

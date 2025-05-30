@@ -4,10 +4,11 @@ import '../../../../../const.dart';
 class BottomRow extends StatelessWidget {
   const BottomRow({
     super.key,
-    required this.width,
+    required this.width, required this.isPortrait,
   });
 
   final double width;
+  final bool isPortrait ;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class BottomRow extends StatelessWidget {
           child: Row(
             children: [
               Text("40 EGP",style: TextStyle(
-                fontSize: 15.sp,
+                fontSize: isPortrait ? 15.sp : 10.sp,
                 fontWeight: FontWeight.bold,
               ),),
               const Spacer(),

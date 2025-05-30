@@ -54,7 +54,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         Text(
                           widget.title,
                           style: TextStyle(
-                            fontSize: isPortrait ? 27.sp : 18.sp,
+                            fontSize: isPortrait ? 27.sp : 16.sp,
                             color: widget.darkColor,
                             fontWeight: FontWeight.bold,
                           ),
@@ -67,7 +67,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           textAlign: TextAlign.start,
                           // textDirection: TextDirection.rtl,
                           style: TextStyle(
-                            fontSize: isPortrait ? 17.sp : 13.sp,
+                            fontSize: isPortrait ? 17.sp : 12.sp,
                             color: Colors.black,
                           ),
                         ),

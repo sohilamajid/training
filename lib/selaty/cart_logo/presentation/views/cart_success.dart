@@ -23,21 +23,27 @@ class _CartSuccessState extends State<CartSuccess> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: const SharedAppBar(isCenter: true, title: "عربة التسوق"),
-      body: Center(
-        child: CartStates(
-          width: width,
-          height: height,
-          containerColor: AppColors.greenColor,
-          imagePath: successBagIcon,
-          title: 'طلبك ناجح !',
-          subtitle: "شكرا على الطلب ..ستحصل عليه في خلال بضع دقائق",
-          button: InkWell(
-            onTap: () => Get.to(const DeliveryScreen()),
-            child: CustomButton(
-                text: "ترتيب المسار", color: const Color(0xFF38344b), width: 320.w),
-          ),
-        ),
-      ),
+      body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints){
+        return OrientationBuilder(builder: (context, orientation){
+          bool isPortrait = orientation == Orientation.portrait;
+          return Center(
+            child: CartStates(
+              isPortrait: isPortrait,
+              width: width,
+              height: height,
+              containerColor: AppColors.greenColor,
+              imagePath: successBagIcon,
+              title: 'طلبك ناجح !',
+              subtitle: "شكرا على الطلب ..ستحصل عليه في خلال بضع دقائق",
+              button: InkWell(
+                onTap: () => Get.to(const DeliveryScreen()),
+                child: CustomButton(
+                    text: "ترتيب المسار", color: const Color(0xFF38344b), width: 320.w),
+              ),
+            ),
+          );
+        });
+      }),
     );
   }
 }

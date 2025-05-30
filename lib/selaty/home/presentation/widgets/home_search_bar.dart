@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeSearchBar extends StatelessWidget {
-  const HomeSearchBar({super.key});
+  const HomeSearchBar({super.key, required this.isPortrait});
+  final bool isPortrait ;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class HomeSearchBar extends StatelessWidget {
       children: [
         Container(
           height: 50.h,
-          width: 50.w,
+          width: 50.w ,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: const Color(0xFFed3d4d),
@@ -37,10 +38,14 @@ class HomeSearchBar extends StatelessWidget {
               SizedBox(width: 15.w,),
               Text("البحث عن المنتجات...",style: TextStyle(
                 color: Colors.grey,
-                fontSize: 14.sp,
+                fontSize: isPortrait? 14.sp : 10.sp,
               ),),
-              SizedBox(width: width * .24.w,),
-              const Icon(Icons.search,color: Colors.grey,size: 27,),
+              Spacer(),
+              // SizedBox(width: width * .24.w,),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: const Icon(Icons.search,color: Colors.grey,size: 27,),
+              ),
             ],
           ),
         ),

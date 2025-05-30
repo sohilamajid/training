@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../const.dart';
 class ItemContainer extends StatefulWidget {
   const ItemContainer({
-    super.key,
+    super.key, required this.isPortrait,
   });
+  final bool isPortrait ;
 
   @override
   State<ItemContainer> createState() => _ItemContainerState();
@@ -28,7 +29,7 @@ class _ItemContainerState extends State<ItemContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 110.h,
+      height: widget.isPortrait? 110.h : 150.h,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -48,7 +49,7 @@ class _ItemContainerState extends State<ItemContainer> {
                 ),
                 SizedBox(height: 10.h,),
                 Text("$count",style: TextStyle(
-                  fontSize: 17.sp,
+                  fontSize: widget.isPortrait ? 17.sp : 12.sp,
                   fontWeight: FontWeight.bold,
                 ),),
                 InkWell(
@@ -66,19 +67,19 @@ class _ItemContainerState extends State<ItemContainer> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("35.00\$x1",style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: widget.isPortrait ? 16.sp : 10.sp,
                   fontWeight: FontWeight.bold,
                   color: AppColors.greenColor,
                 ),),
                 Text("كمثرى امريكي",style: TextStyle(
-                  fontSize: 17.sp,
+                  fontSize: widget.isPortrait? 17.sp : 12.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),),
                 Text("1 kg",
                   textDirection: TextDirection.ltr,
                   style: TextStyle(
-                    fontSize: 15.sp,
+                    fontSize: widget.isPortrait? 15.sp : 10.sp,
                     color: Colors.black,
                   ),),
               ],

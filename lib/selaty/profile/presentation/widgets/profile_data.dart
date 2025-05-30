@@ -5,10 +5,11 @@ import '../../../../const.dart';
 class ProfileData extends StatelessWidget {
   const ProfileData({
     super.key,
-    required this.logo,
+    required this.logo, required this.isPortrait,
   });
 
   final String logo;
+  final bool isPortrait;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class ProfileData extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(top: 55.0),
             child: Container(
-              width: 300.w,
+              width: isPortrait ? 300.w : 140.w,
               height: 100.h,
               decoration: BoxDecoration(
                 color: AppColors.greenColor,
@@ -31,14 +32,14 @@ class ProfileData extends StatelessWidget {
                   Text(
                     "سهيله ماجد",
                     style: TextStyle(
-                        fontSize: 15.sp,
+                        fontSize: isPortrait ? 15.sp : 10.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "sohila22@gmail.com",
                     style: TextStyle(color: Colors.white,
-                    fontSize: 14.sp),
+                    fontSize: isPortrait? 14.sp : 10.sp),
                   ),
                 ],
               ),

@@ -5,8 +5,13 @@ import '../../../../const.dart';
 class AddressCard extends StatefulWidget {
   final bool isSelected;
   final VoidCallback onSelect;
-  const AddressCard(
-      {super.key, required this.isSelected, required this.onSelect});
+  final bool isPortrait;
+  const AddressCard({
+    super.key,
+    required this.isSelected,
+    required this.onSelect,
+    required this.isPortrait,
+  });
 
   @override
   State<AddressCard> createState() => _AddressCardState();
@@ -37,16 +42,19 @@ class _AddressCardState extends State<AddressCard> {
               decoration: BoxDecoration(
                 color: AppColors.greenColor.withOpacity(.2),
                 borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                ),
               ),
               child: Center(
-                child: Text("افتراضي",
-                    style: TextStyle(
-                      fontSize: 10.sp,
-                      color: AppColors.greenColor,
-                      fontWeight: FontWeight.bold,
-                    )),
+                child: Text(
+                  "افتراضي",
+                  style: TextStyle(
+                    fontSize: 10.sp,
+                    color: AppColors.greenColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ),
@@ -67,38 +75,33 @@ class _AddressCardState extends State<AddressCard> {
                       activeColor: Colors.red,
                     ),
                   ),
-                  SizedBox(
-                    width: 5.w,
-                  ),
+                  SizedBox(width: 5.w),
                   Text(
                     "المنزل",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 18.sp,
+                      fontSize: widget.isPortrait ? 18.sp : 14.sp,
                     ),
                   ),
                   const Spacer(),
-                  Icon(
-                    Icons.more_horiz,
-                    size: 27.r,
-                  ),
+                  Icon(Icons.more_horiz, size: 27.r),
                 ],
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 15.0),
                 child: Text(
                   "شارع 2 --- شبين الكوم - المنوفية",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 15.sp,
-                  ),
+                  style: TextStyle(color: Colors.grey, fontSize: widget.isPortrait ? 15.sp : 10.sp,),
                 ),
               ),
-              Text(
-                "الجوال: 050308821",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15.sp,
+              Padding(
+                padding: const EdgeInsets.only(right: 15.0),
+                child: Text(
+                  "الجوال: 050308821",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: widget.isPortrait ? 15.sp : 10.sp,
+                  ),
                 ),
               ),
             ],

@@ -19,8 +19,8 @@ class SplashTitle extends StatelessWidget {
             ? CrossAxisAlignment.center
             : CrossAxisAlignment.start,
         children: [
-          CustomText(text: "ســـــلتي", color: const Color(0xFFd6262b), fontSize: isPortrait ? 30.sp : 28.sp),
-          CustomText(text: "S E L A T Y", color: Colors.black, fontSize: isPortrait ? 26.sp : 24.sp),
+          CustomText(text: "ســـــلتي", color: const Color(0xFFd6262b), fontSize: isPortrait ? 30.sp : 20.sp),
+          CustomText(text: "S E L A T Y", color: Colors.black, fontSize: isPortrait ? 26.sp : 20.sp),
         ],
       ),
     );

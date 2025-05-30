@@ -25,16 +25,23 @@ class _CategoryFruitScreenState extends State<CategoryFruitScreen> {
       backgroundColor: const Color(0xFFe2e2e2),
       appBar: SharedAppBar(isCenter: true, title: "الفاكهة",backgroundColor: AppColors.greenColor,color: Colors.white,),
       // bottomNavigationBar: CustomNavigationBar(logo: logo),
-      body: Column(
-        children: [
-          FruitImage(fruitIcon: fruitIcon),
-          Padding(
-            padding: EdgeInsets.only(left: 10.0.w,top: 10.h),
-            child: const HomeSearchBar(),
-          ),
-          CategoryItems(height: height, fruits: fruits, width: width),
-        ],
-      ),
+      body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints){
+        return OrientationBuilder(builder: (context, orientation){
+          bool isPortrait = orientation == Orientation.portrait;
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                FruitImage(fruitIcon: fruitIcon),
+                Padding(
+                  padding: EdgeInsets.only(left: 10.0.w,top: 10.h),
+                  child: HomeSearchBar(isPortrait: isPortrait,),
+                ),
+                CategoryItems(height: height, fruits: fruits, width: width,isPortrait: isPortrait,),
+              ],
+            ),
+          );
+        });
+      })
     );
   }
 }

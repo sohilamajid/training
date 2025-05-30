@@ -4,7 +4,8 @@ import 'grid_ui.dart';
 import 'model/offers_list.dart';
 
 class GridSquares extends StatelessWidget {
-  const GridSquares({super.key});
+  const GridSquares({super.key, required this.isPortrait});
+  final bool isPortrait ;
 
   @override
   Widget build(BuildContext context) {
@@ -12,13 +13,13 @@ class GridSquares extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl, // Ensure RTL layout
       child: SizedBox(
-        height: 235.h,
+        height: isPortrait ? 235.h : 420.h,
         child: GridView.builder(
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(8),
           itemCount: offers.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: isPortrait ? 3 : 4,
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
           ),

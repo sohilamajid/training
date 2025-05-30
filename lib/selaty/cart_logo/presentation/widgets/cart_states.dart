@@ -13,6 +13,7 @@ class CartStates extends StatelessWidget {
     this.titleColor,
     this.subtitleColor,
     this.imageColor,
+    required this.isPortrait,
   });
 
   final double width;
@@ -25,6 +26,7 @@ class CartStates extends StatelessWidget {
   final Color? titleColor;
   final Color? subtitleColor;
   final Color? imageColor;
+  final bool isPortrait ;
 
   @override
   Widget build(BuildContext context) {
@@ -37,40 +39,43 @@ class CartStates extends StatelessWidget {
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 50.0.h),
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(imagePath,
-                      color: imageColor , width: 170.w, height: 170.h),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: titleColor ?? Colors.white,
-                      fontSize: 20.sp,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 50.0.h),
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(imagePath,
+                        color: imageColor , width: 170.w, height: 170.h),
+                    SizedBox(
+                      height: 10.h,
                     ),
-                  ),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      // fontWeight: FontWeight.bold,
-                      color: subtitleColor ?? Colors.white,
-                      fontSize: 13.sp,
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: titleColor ?? Colors.white,
+                        fontSize: isPortrait ? 21.sp : 15.sp,
+                      ),
                     ),
-                  ),
-                ],
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        // fontWeight: FontWeight.bold,
+                        color: subtitleColor ?? Colors.white,
+                        fontSize: isPortrait ? 14.sp : 10.sp,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            button,
-          ],
+              SizedBox(height: 135.h,),
+              button,
+            ],
+          ),
         ),
       ),
     );

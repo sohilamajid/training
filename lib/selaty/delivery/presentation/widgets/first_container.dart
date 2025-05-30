@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../const.dart';
 class FirstContainer extends StatelessWidget {
+  final bool isPortrait ;
   const FirstContainer({
-    super.key,
+    super.key, required this.isPortrait,
   });
 
   @override
@@ -12,7 +13,7 @@ class FirstContainer extends StatelessWidget {
       padding: EdgeInsets.only(top: 15.h,right: 20.w,left: 5.h,bottom: 20.h),
       margin: EdgeInsets.only(top: 15.h,left: 15.w),
       width: 330.w,
-      height: 120.h,
+      height: isPortrait ? 120.h : 160.h,
       decoration: BoxDecoration(
         color: AppColors.greenColor,
         borderRadius: BorderRadius.circular(10),
@@ -25,22 +26,23 @@ class FirstContainer extends StatelessWidget {
               Text("معرف الطلب: OD2204#",style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 16.sp,
+                fontSize: isPortrait ? 16.sp : 12.sp,
               ),),
               Text("تاريخ النشر 26 كانون الثاني(يناير) 2025",style: TextStyle(
                 color: Colors.white,
-                fontSize: 13.sp,
+                fontSize: isPortrait ? 13.sp : 9.sp,
               ),),
+              SizedBox(height: 15.h,),
               Row(
                 children: [
                   Text("البنود: 15",style: TextStyle(
                     color: Colors.white,
-                    fontSize: 13.sp,
+                    fontSize: isPortrait ? 13.sp : 9.sp,
                   ),),
                   SizedBox(width: 25.w,),
                   Text("الاجمالي: 100 ريال",style: TextStyle(
                     color: Colors.white,
-                    fontSize: 13.sp,
+                    fontSize: isPortrait? 13.sp : 9.sp,
                   ),),
                 ],
               ),
