@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:selaty/selaty/shared_widgets/custom_row_bottom.dart';
 import 'package:selaty/selaty/shared_widgets/custom_button/custom_button.dart';
 import 'package:selaty/selaty/sign_up/widgets/social-button.dart';
 import '../../login/widgets/custom_text_field.dart';
+import '../cubit/sign_up_cubit.dart';
 
 class SignUpLandLayout extends StatelessWidget {
   const SignUpLandLayout({
@@ -82,21 +84,21 @@ class SignUpLandLayout extends StatelessWidget {
                             controller: _emailController,
                             text: "عنوان البريد الإلكتروني",
                             isEmail: true,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "هذا الحقل فارغ";
-                              }
-                              if (value.length < 11) {
-                                return "البريد الإلكتروني قصير جدا";
-                              }
-                              bool emailValid = RegExp(
-                                  r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
-                                  .hasMatch(value);
-                              if (!emailValid) {
-                                return "صيغة البريد الإلكتروني غير صحيحة";
-                              }
-                              return null;
-                            },
+                            // validator: (value) {
+                            //   if (value == null || value.isEmpty) {
+                            //     return "هذا الحقل فارغ";
+                            //   }
+                            //   if (value.length < 11) {
+                            //     return "البريد الإلكتروني قصير جدا";
+                            //   }
+                            //   bool emailValid = RegExp(
+                            //       r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                            //       .hasMatch(value);
+                            //   if (!emailValid) {
+                            //     return "صيغة البريد الإلكتروني غير صحيحة";
+                            //   }
+                            //   return null;
+                            // },
                           ),
                         ),
                       ),
@@ -115,12 +117,19 @@ class SignUpLandLayout extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20.h,),
-              CustomButton(
+              CustomButton<SignUpCubit, SignUpState>(
                 text: "اشتراك",
                 color: AppColors.greenColor,
                 width: double.infinity,
+                useBloc: true,
+                isLoadingState: (state) => state is SignUpLoadingState,
                 onTap: () {
-                  _formKey.currentState!.validate();
+                  if(_formKey.currentState!.validate()){
+                    context.read<SignUpCubit>().signUp(
+                      phone: _emailController.text,
+                      password: _passwordController.text,
+                      name: _nameController.text,
+                    );}
                 },
               ),
               SizedBox(

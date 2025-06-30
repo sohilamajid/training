@@ -4,9 +4,15 @@ import '../../../../../const.dart';
 
 class CenterColumn extends StatelessWidget {
   const CenterColumn({
-    super.key, required this.isPortrait,
+    super.key,
+    required this.isPortrait,
+    required this.title,
+    required this.unit,
   });
-  final bool isPortrait ;
+
+  final bool isPortrait;
+  final String title;
+  final String unit;
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +28,28 @@ class CenterColumn extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               color: AppColors.orangeColor,
             ),
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0,top: 2),
-              child: Text("فواكه",style: TextStyle(
-                fontSize: isPortrait? 15.sp : 10.sp,
+            alignment: Alignment.center,
+            child: Text("المنتجات",
+              style: TextStyle(
+                fontSize: isPortrait ? 15.sp : 10.sp,
                 color: Colors.white,
-              ),),
+              ),
             ),
           ),
-          Text("طبق فواكه",style: TextStyle(
-            fontSize: isPortrait? 16.sp: 11.sp,
-            color: Colors.grey,
-          ),),
-          Text("kg 1",style: TextStyle(
-            fontSize: isPortrait ? 16.sp : 11.sp,
-            color: Colors.grey,
-          ),),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: isPortrait ? 16.sp : 11.sp,
+              color: Colors.grey,
+            ),
+          ),
+          Text(
+            unit,
+            style: TextStyle(
+              fontSize: isPortrait ? 16.sp : 11.sp,
+              color: Colors.grey,
+            ),
+          ),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:selaty/selaty/auth/views/auth_screen.dart';
 import 'package:selaty/selaty/onboarding/model/on_boarding_model.dart';
@@ -74,6 +75,7 @@ class _PageViewScreenState extends State<PageViewScreen> {
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                         );
+                        _completeOnBoarding();
                       } else {
                         // Handle what happens when reaching the last page (e.g., navigate to home screen)
                         Get.offAll(const AuthScreen());
@@ -101,5 +103,10 @@ class _PageViewScreenState extends State<PageViewScreen> {
           ),
         )
     );
+  }
+  void _completeOnBoarding() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool("onBoarding", true);
+    Get.offAll(AuthScreen());
   }
 }

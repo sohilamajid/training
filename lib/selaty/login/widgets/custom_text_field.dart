@@ -41,9 +41,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
   }
 
   void _validateEmail(String input) {
-    final bool isValid =
-        RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
-            .hasMatch(input);
+    final bool isValid = RegExp(
+        r"(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$)|(^[0-9]{10,15}$)"
+    ).hasMatch(input);
     if (isValid != _emailValid) {
       setState(() {
         _emailValid = isValid;

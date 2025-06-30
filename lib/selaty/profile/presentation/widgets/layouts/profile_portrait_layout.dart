@@ -15,35 +15,37 @@ class ProfilePortraitLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ProfileData(logo: logo, isPortrait: isPortrait,),
-        SizedBox(height: 20.h),
-        const UserData(),
-        Padding(
-          padding: EdgeInsets.only(right: 35.w, left: 35.w),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              InkWell(
-                onTap: () => Get.to(const AuthScreen()),
-                child: ProfileButton(
-                  backgroundColor: AppColors.greenColor,
-                  icon: Icons.exit_to_app,
-                  label: "خروج", isPortrait: isPortrait,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ProfileData(logo: logo, isPortrait: isPortrait,),
+          SizedBox(height: 20.h),
+          const UserData(),
+          Padding(
+            padding: EdgeInsets.only(right: 35.w, left: 35.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                InkWell(
+                  onTap: () => Get.to(const AuthScreen()),
+                  child: ProfileButton(
+                    backgroundColor: AppColors.greenColor,
+                    icon: Icons.exit_to_app,
+                    label: "خروج", isPortrait: isPortrait,
+                  ),
                 ),
-              ),
-              const Spacer(),
-              ProfileButton(
-                backgroundColor: AppColors.redColor,
-                icon: Icons.help_center_outlined,
-                label: "مركز الدعم",
-                isPortrait: isPortrait,
-              ),
-            ],
+                const Spacer(),
+                ProfileButton(
+                  backgroundColor: AppColors.redColor,
+                  icon: Icons.help_center_outlined,
+                  label: "مركز الدعم",
+                  isPortrait: isPortrait,
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

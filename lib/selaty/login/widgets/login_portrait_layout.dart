@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../const.dart';
@@ -7,7 +8,7 @@ import '../../shared_widgets/custom_row_bottom.dart';
 import '../../shared_widgets/custom_title_image/title_image.dart';
 import '../../sign_up/sign_up_screen.dart';
 import '../../verification/change_password_screen.dart';
-import '../../verification/verification_screen.dart';
+import '../cubit/login_cubit.dart';
 import 'custom_text_field.dart';
 
 class LoginPortraitLayout extends StatelessWidget {
@@ -47,23 +48,23 @@ class LoginPortraitLayout extends StatelessWidget {
                   child: CustomTextField(
                     height: height.h,
                     controller: _emailController,
-                    text: "عنوان البريد الإلكتروني",
+                    text: "رقم الهاتف/عنوان البريد الإلكتروني",
                     isEmail: true,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "هذا الحقل فارغ";
-                      }
-                      if (value.length < 11) {
-                        return "البريد الإلكتروني قصير جدا";
-                      }
-                      bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
-                          .hasMatch(value);
-                      if (!emailValid) {
-                        return "صيغة البريد الإلكتروني غير صحيحة";
-                      }
-                      return null;
-                    },
+                    // validator: (value) {
+                    //   if (value == null || value.isEmpty) {
+                    //     return "هذا الحقل فارغ";
+                    //   }
+                    //   if (value.length < 11) {
+                    //     return "البريد الإلكتروني قصير جدا";
+                    //   }
+                    //   bool emailValid = RegExp(
+                    //       r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                    //       .hasMatch(value);
+                    //   if (!emailValid) {
+                    //     return "صيغة البريد الإلكتروني غير صحيحة";
+                    //   }
+                    //   return null;
+                    // },
                   ),
                 ),
                 CustomTextField(
@@ -90,13 +91,18 @@ class LoginPortraitLayout extends StatelessWidget {
                 SizedBox(
                   height: 20.h,
                 ),
-                CustomButton(
+                CustomButton<LoginCubit, LoginState>(
                   text: "تسحيل الدخول",
                   color: AppColors.greenColor,
                   width: double.infinity,
+                  useBloc: true,
+                  isLoadingState: (state) => state is LoginLoadingState,
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
-                      Get.to(const VerifyScreen());
+                      context.read<LoginCubit>().login(
+                          phone: _emailController.text,
+                          password: _passwordController.text);
+                      // Get.to(const VerifyScreen());
                     }
                   },
                 ),

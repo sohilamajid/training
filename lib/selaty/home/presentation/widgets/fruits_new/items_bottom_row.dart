@@ -4,11 +4,12 @@ import '../../../../../const.dart';
 class BottomRow extends StatelessWidget {
   const BottomRow({
     super.key,
-    required this.width, required this.isPortrait,
+    required this.width, required this.isPortrait, required this.price,
   });
 
   final double width;
   final bool isPortrait ;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class BottomRow extends StatelessWidget {
           padding: const EdgeInsets.only(right: 8.0,left: 8),
           child: Row(
             children: [
-              Text("40 EGP",style: TextStyle(
+              Text("$price EGP",style: TextStyle(
                 fontSize: isPortrait ? 15.sp : 10.sp,
                 fontWeight: FontWeight.bold,
               ),),
