@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:selaty/selaty/category/cubit/categories_cubit.dart';
 import '../../../home/presentation/widgets/home_search_bar.dart';
 import '../../../profile/presentation/widgets/appBar/profile_appBar.dart';
 import '../widgets/category_items.dart';
@@ -21,27 +23,44 @@ class _CategoryFruitScreenState extends State<CategoryFruitScreen> {
   Widget build(BuildContext context) {
     var width = MediaQuery.sizeOf(context).width;
     var height = MediaQuery.sizeOf(context).height;
-    return Scaffold(
+    return BlocProvider(
+  create: (context) => CategoriesCubit(),
+  child: Scaffold(
       backgroundColor: const Color(0xFFe2e2e2),
-      appBar: SharedAppBar(isCenter: true, title: "الفاكهة",backgroundColor: AppColors.greenColor,color: Colors.white,),
+      appBar: SharedAppBar(
+        isCenter: true,
+        title: "الفاكهة",
+        backgroundColor: AppColors.greenColor,
+        color: Colors.white,
+      ),
       // bottomNavigationBar: CustomNavigationBar(logo: logo),
-      body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints){
-        return OrientationBuilder(builder: (context, orientation){
-          bool isPortrait = orientation == Orientation.portrait;
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                FruitImage(fruitIcon: fruitIcon),
-                Padding(
-                  padding: EdgeInsets.only(left: 10.0.w,top: 10.h),
-                  child: HomeSearchBar(isPortrait: isPortrait,),
-                ),
-                CategoryItems(height: height, fruits: fruits, width: width,isPortrait: isPortrait,),
-              ],
-            ),
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return OrientationBuilder(
+            builder: (context, orientation) {
+              bool isPortrait = orientation == Orientation.portrait;
+              return Column(
+                children: [
+                  FruitImage(fruitIcon: fruitIcon),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.0.w, top: 10.h),
+                    child: HomeSearchBar(isPortrait: isPortrait),
+                  ),
+                  Expanded(
+                    child: CategoryItems(
+                      height: height,
+                      fruits: fruits,
+                      width: width,
+                      isPortrait: isPortrait,
+                    ),
+                  ),
+                ],
+              );
+            },
           );
-        });
-      })
-    );
+        },
+      ),
+    ),
+);
   }
 }

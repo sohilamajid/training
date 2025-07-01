@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:selaty/selaty/category/cubit/categories_cubit.dart';
 import 'package:selaty/selaty/fire_base/fire_base_class.dart';
 import 'package:selaty/selaty/helper/dio_helper.dart';
 import 'package:selaty/selaty/home/cubit/products_cubit.dart';
@@ -62,11 +63,12 @@ class MyApp extends StatelessWidget {
         builder: (_ , child) {
           return MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => LoginCubit(),),
+              //BlocProvider(create: (context) => LoginCubit(),),
               BlocProvider(create: (context) => SignUpCubit(),),
               BlocProvider(create: (context) => ProductsCubit()..getProducts(),),
               BlocProvider(create: (context) => ProfileCubit()..getProfile(),),
               BlocProvider(create: (context) => UpdateProfileCubit(),),
+             // BlocProvider(create: (context) => CategoriesCubit(),),
             ],
             child: GetMaterialApp(
               theme: ThemeData(

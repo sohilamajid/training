@@ -5,5 +5,6 @@ class ApiUrl{
   static const profile = "profile";
   static const products = "reports/products/ar";
   static const updateProfile = "update_profile/1";
+  static const categories = "https://master-market.masool.net/api/product/get/ar?page=1";
   static const imageBaseUrl = "https://masool.net/fruits-app/public/uploads/";
 }
